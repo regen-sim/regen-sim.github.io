@@ -32,6 +32,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/my-css.css">
   <link rel="icon" href="https://www.mit.edu/themes/mit/assets/favicon/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -122,16 +123,18 @@
             <span class="author-block"><sup>2</sup>Toyota Research Institute</span>
           </div>
 
+          <!-- Teaser image (replace with gif in the future)-->
+
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="#"
+                <a href="https://openreview.net/forum?id=EbCUbPZjM1" target="_blank"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Paper (TBU)</span>
+                  <span>Paper</span>
                 </a>
               </span>
               <span class="link-block">
@@ -173,7 +176,6 @@
                   <span>Data</span>
                   </a> -->
             </div>
-
           </div>
         </div>
       </div>
@@ -181,20 +183,526 @@
   </div>
 </section>
 
+<section class="section" id="teaser">
+  <div class="hero-body">
+    <div>
+      <div>
+        <img src="static/images/teaser-1.png"/>
+      </div>
+      <h2 class="subtitle has-text-centered" style="padding-left: 6em; padding-right: 6em">
+        <span class="dnerf">ReGen</span> generates simulations from behavior by inferring plausible simulated environment where the behavior could have occurred through inverse design.
+      </h2>
+  </div>
+</section>
+
+<section class="section" id="abstract-and-video">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Simulation plays a key role in scaling robot learning and validating policies, but constructing simulations remains labor-intensive. In this paper, we introduce ReGen, a generative simulation framework that automates this process using inverse design. Given an agent's behavior (such as a motion trajectory or objective function) and its textual description, we infer the underlying scenarios and environments that could have caused the behavior. Our approach leverages large language models to construct and expand a graph that captures cause-and-effect relationships and relevant entities with properties in the environment, which is then processed to configure a robot simulation environment. Our approach supports (i) augmenting simulations based on ego-agent behaviors, (ii) controllable, counterfactual scenario generation, (iii) reasoning about agent cognition and mental states, and (iv) reasoning with distinct sensing modalities, such as braking due to faulty GPS signals. We demonstrate our method in autonomous driving and robot manipulation tasks, generating more diverse, complex simulated environments compared to existing simulations with high success rates, and enabling controllable generation for corner cases. This approach enhances the validation of robot policies and supports data or simulation augmentation, advancing scalable robot learning for improved generalization and robustness.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/mdKRpLnAH5Y?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
 
 
-<!-- <section class="section" id="BibTeX"> -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Driving. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Driving Results</h2>
+        <div class="content has-text-justified">
+          <!-- <p>
+            Lorem Ipsum
+          </p> -->
+          <div id="driving-tab-content" class="tabs-container" style="margin-top: -2em;">
+            <div class="tabs">
+              <div class="tab active" data-tab="drive_forward">Drive Forward</div>
+              <div class="tab" data-tab="slowed_down">Slow Down</div>
+              <div class="tab" data-tab="change_lanes">Changes Lanes</div>
+              <div class="tab" data-tab="stop_abruptly">Stop Abruptly</div>
+              <div class="tab" data-tab="stop_after_turn">Stop after Turn</div>
+              <div class="tab" data-tab="stop_at_intersection">Stop at Intersection</div>
+            </div>
+            <div class="content">
+              <!-- Block Lists -->
+              <div class="block-list active" id="drive_forward">
+                <h4>"The ego-vehicle was stationary at an intersection then began to move forward..."</h4>
+                <div class="block active-block" data-index="1">Crossing with a malfunctioned traffic light <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Advancing after distracted driver moves <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Waiting for intersection to clear <span class="arrow">→</span></div>
+                <div class="block" data-index="5">Yielding for ambulance at intersection <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Proceeding after pedestrian crosses street <span class="arrow">→</span></div>
+              </div>
+              <div class="block-list" id="slowed_down">
+                <h4>"The ego-vehicle was driving straight and then slowed down..."</h4>
+                <div class="block" data-index="4">Slowing to avoid SUV cut-in  <span class="arrow">→</span></div>
+                <div class="block" data-index="1">Slowing for lane closure congestion  <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Yielding to overtaking ambulance  <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Maintaining wary distance behind stopping truck <span class="arrow">→</span></div>
+                <div class="block" data-index="5">Complying with police speed enforcement  <span class="arrow">→</span></div>
+              </div>              
+              <div class="block-list" id="change_lanes">
+                <h4>"The ego-vehicle changes lanes to avoid hazards or improve flow..."</h4>
+                <div class="block" data-index="1">Abrupt lane change to avoid debris <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Overtaking slow vehicle <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Clearing path for ambulance with lane change <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Merging to open lane <span class="arrow">→</span></div>
+                <div class="block" data-index="5">Swerving to avoid wrong-way driver <span class="arrow">→</span></div>
+              </div>
+              <div class="block-list" id="stop_abruptly">
+                <h4>"The ego-vehicle was driving forward and then stops abruptly..."</h4>
+                <div class="block" data-index="5">Avoiding open door hazard <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Avoiding collision with elderly pedestrian <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Stopping abruptly due to highway accident <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Yielding safely to passing ambulance <span class="arrow">→</span></div>
+                <div class="block" data-index="1">Braking for roadside assistance hazard <span class="arrow">→</span></div>
+              </div>
+              <div class="block-list" id="stop_after_turn">
+                <h4>"The ego-vehicle stops shortly after completing a turn at an intersection..."</h4>
+                <div class="block" data-index="2">Braking for occluded SUV at corner <span class="arrow">→</span></div>
+                <div class="block" data-index="1">Stopping at a walking street <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Halting at unexpected police checkpoint <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Yielding to ambulance <span class="arrow">→</span></div>
+                <div class="block" data-index="5">Picking up a passenger <span class="arrow">→</span></div>
+              </div>
+              <div class="block-list" id="stop_at_intersection">
+                <h4>"The ego-vehicle stops at an intersection entrance..."</h4>
+                <div class="block" data-index="1">Yielding to ambulance <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Braking to avoid running a red light <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Stopping for a car running a red light <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Brake for a fallen box <span class="arrow">→</span></div>
+                <div class="block" data-index="5">Halt for a high-speed police chase <span class="arrow">→</span></div>
+              </div>
+              
+        
+              <!-- Video/Image -->
+              <div class="video-box">
+                <video poster="" id="driving-scenario-video" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/Driving/ego_template_1_scenario_1.mp4"
+                          type="video/mp4">
+                           
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .tabs-container {
+              /* max-width: 1000px; */
+              width: 100%;
+              max-width: 100%;
+              margin: 40px auto;
+              background: white;
+              border-radius: 8px;
+              overflow: hidden;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .tabs {
+              display: flex;
+              border-bottom: 2px solid #e0e0e0;
+            }
+
+            .tab {
+              padding: 16px 24px;
+              cursor: pointer;
+              font-weight: 600;
+              color: #999;
+            }
+
+            .tab:hover{
+              background-color: #ececec;
+            }
+
+            .tab.active {
+              color: black;
+              border-bottom: 2px solid black;
+            }
+
+            .content {
+              display: flex;
+              padding: 24px;
+              gap: 24px;
+            }
+
+            .block-list {
+              flex: 1;
+              display: none;
+              flex-direction: column;
+              
+            }
+
+            .block-list.active {
+              display: flex;
+            }
+
+            .block {
+              padding: 8px 14px;
+              background: transparent;
+              border-radius: 6px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              cursor: pointer;
+              transition: background 0.2s, color 0.2s;
+              color: #b0b0b0;
+            }
+
+            .block:hover, .block.active-block:hover {
+              background: #e0e0e0;
+            }
+
+            .block.active-block {
+              background: white;
+              font-weight: 600;
+              color: #111;
+            }
+
+            .block .arrow {
+              visibility: hidden;
+            }
+
+            .block.active-block .arrow {
+              visibility: visible;
+            }
+
+            .arrow {
+              font-size: 1.8rem;
+            }
+
+            .video-box {
+              flex: 1;
+              max-width: 50%;
+            }
+
+            .video-box img {
+              width: 100%;
+              border-radius: 8px;
+              object-fit: cover;
+            }
+
+            @media (max-width: 768px) {
+              .tabs-content {
+                flex-direction: column;
+              }
+              .video-box {
+                max-width: 100%;
+              }
+            }
+          </style>
+
+          <script>
+            (function() {
+  const drivingContainer = document.getElementById('driving-tab-content');
+  const tabs = drivingContainer.querySelectorAll('.tab');
+  const blockLists = drivingContainer.querySelectorAll('.block-list');
+  const video = drivingContainer.querySelector('#driving-scenario-video');
+  const source = video.querySelector('source');
+
+  let activeTabId = 'drive_forward';
+
+  const tabToTemplateMap = {
+    drive_forward: 1,
+    slowed_down: 2,
+    change_lanes: 6,
+    stop_abruptly: 3,
+    stop_after_turn: 4,
+    stop_at_intersection: 5
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const targetId = tab.getAttribute('data-tab');
+      activeTabId = targetId;
+
+      blockLists.forEach(list => {
+        if (list.id === targetId) {
+          list.classList.add('active');
+          const firstBlock = list.querySelector('.block');
+          if (firstBlock) firstBlock.click();
+        } else {
+          list.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  blockLists.forEach(list => {
+    list.querySelectorAll('.block').forEach(block => {
+      block.addEventListener('click', () => {
+        drivingContainer.querySelectorAll('.block').forEach(b => b.classList.remove('active-block'));
+        block.classList.add('active-block');
+
+        const blockIndex = block.getAttribute('data-index');
+        const templateNumber = tabToTemplateMap[activeTabId];
+        const filename = `./static/videos/Driving/ego_template_${templateNumber}_scenario_${blockIndex}.mp4`;
+        source.setAttribute('src', filename);
+        video.load();
+        video.play();
+      });
+    });
+  });
+})();
+
+          </script>
+
+        </div>
+      </div>
+    </div>
+    <!-- Manipulation. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3" style="margin-top: -1em">Manipulation Results</h2>
+        <div class="content has-text-justified">
+          <div id="manipulation-tab-content" class="tabs-container" style="margin-top: -2em;">
+            <div class="tabs manipulation-tabs">
+              <div class="tab active-block" data-tab="close_window">Close Window</div>
+              <div class="tab" data-tab="turn_on_faucet">Turn On Faucet</div>
+              <div class="tab" data-tab="open_door">Open Door</div>
+              <div class="tab" data-tab="store_item">Store Item</div>
+              <div class="tab" data-tab="turn_on_lamp">Turn On Lamp</div>
+              <div class="tab" data-tab="tilt_screen">Tilt Screen</div>
+              <div class="tab" data-tab="carry_bucket">Carry Bucket</div>
+            </div>
+          
+            <div class="content manipulation-content">
+          
+              <!-- Close Window -->
+              <div class="block-list active" id="close_window">
+                <h4>"The robot closes the window..."</h4>
+                <div class="block active-block" data-index="1">Block outside odor <span class="arrow">→</span></div>
+                <div class="block" data-index="7">Protect plant from direct sunlight <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Trap candle's scent <span class="arrow">→</span></div>
+                <div class="block" data-index="5">Keep out unwanted gaze <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Block out construction noise <span class="arrow">→</span></div>
+              </div>
+          
+              <!-- Turn On Faucet -->
+              <div class="block-list" id="turn_on_faucet">
+                <h4>"The robot turns on the water faucet..."</h4>
+                <div class="block" data-index="1">Clean dirty dishes <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Thaw frozen vegetables <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Water the plant <span class="arrow">→</span></div>
+                <div class="block" data-index="5">Washing mixed fruits in a bowl <span class="arrow">→</span></div>
+                <div class="block" data-index="8_2">Collect tap water <span class="arrow">→</span></div>
+              </div>
+          
+              <!-- Open Door -->
+              <div class="block-list" id="open_door">
+                <h4>"The robot opens the door..."</h4>
+                <div class="block" data-index="1">Improve air circulation and ventilation <span class="arrow">→</span></div>
+                <div class="block" data-index="3">Bid farewell and let guest out <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Check delivered package <span class="arrow">→</span></div>
+              </div>
+          
+              <!-- Store Item -->
+              <div class="block-list" id="store_item">
+                <h4>"The robot stores an item into storage..."</h4>
+                <div class="block" data-index="4">Store detergent out of children's reach <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Put away toys as guests arrive <span class="arrow">→</span></div>
+              </div>
+          
+              <!-- Turn On Lamp -->
+              <div class="block-list" id="turn_on_lamp">
+                <h4>"The robot turns on the lamp..."</h4>
+                <div class="block" data-index="2">Showcase an artwork <span class="arrow">→</span></div>
+                <div class="block" data-index="1">Brighten the desk to read a book <span class="arrow">→</span></div>
+                <div class="block" data-index="4">Setup workstation <span class="arrow">→</span></div>
+              </div>
+          
+              <!-- Tilt Screen -->
+              <div class="block-list" id="tilt_screen">
+                <h4>"The robot tilts the display screen..."</h4>
+                <div class="block" data-index="1">Remove glare on the screen <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Sharing a presentation during a meeting <span class="arrow">→</span></div>
+              </div>
+          
+              <!-- Carry Bucket -->
+              <div class="block-list" id="carry_bucket">
+                <h4>"The robot carries a bucket..."</h4>
+                <div class="block" data-index="3">Grabbing a bucket to fill with sand <span class="arrow">→</span></div>
+                <div class="block" data-index="2">Fetching water for floor mopping <span class="arrow">→</span></div>
+              </div>
+          
+              <!-- Video/Image Viewer -->
+              <div class="video-box">
+                <video poster="" id="manipulation-scenario-video" autoplay controls muted loop playsinline height="100%">
+                  <source src="./static/videos/Manipulation/out_1_1.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  
+(function() {
+  const manipulationContainer = document.getElementById('manipulation-tab-content');
+  const tabs = manipulationContainer.querySelectorAll('.tab');
+  const blockLists = manipulationContainer.querySelectorAll('.block-list');
+  const video = manipulationContainer.querySelector('#manipulation-scenario-video');
+  const source = video.querySelector('source');
+
+  let activeTabId = 'close_window'; // Default
+
+  const tabToTemplateMap = {
+    close_window: 1,
+    turn_on_faucet: 4,
+    open_door: 2,
+    store_item: 6,
+    turn_on_lamp: 8,
+    tilt_screen: 9,
+    carry_bucket: 12
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Tab active styling
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Switch visible block list
+      const targetId = tab.getAttribute('data-tab');
+      activeTabId = targetId;
+
+      blockLists.forEach(list => {
+        if (list.id === targetId) {
+          list.classList.add('active');
+          const firstBlock = list.querySelector('.block');
+          if (firstBlock) firstBlock.click();
+        } else {
+          list.classList.remove('active');
+        }
+      });
+    });
+  });
+
+  // Clickable blocks
+  blockLists.forEach(list => {
+    list.querySelectorAll('.block').forEach(block => {
+      block.addEventListener('click', () => {
+        manipulationContainer.querySelectorAll('.block').forEach(b => b.classList.remove('active-block'));
+        block.classList.add('active-block');
+
+        const blockIndex = block.getAttribute('data-index');
+        const templateNumber = tabToTemplateMap[activeTabId];
+        const filename = `./static/videos/Manipulation/out_${templateNumber}_${blockIndex}.mp4`;
+
+        console.log(filename);
+        source.setAttribute('src', filename);
+        console.log(filename);
+        video.load();
+        video.play();
+      });
+    });
+  });
+})();
+</script>
+
+<!-- Method -->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            Lorem Ipsum
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Capabiliteis -->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Capabilities</h2>
+        <div class="content has-text-justified">
+          <p>
+            Lorem Ipsum
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Probing VLM -->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Probing VLM</h2>
+        <div class="content has-text-justified">
+          <p>
+            Lorem Ipsum
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- Related Resources-->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Related Resources</h2>
+        <div class="content has-text-justified">
+          <p>
+            Lorem Ipsum
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-      @inproceedings{
-        nguyen2025regen,
-        title={ReGen: Generative Robot Simulation via Inverse Design},
-        author={Phat Tan Nguyen and Tsun-Hsuan Wang and Zhang-Wei Hong and Erfan Aasi and Andrew Silva and Guy Rosman and Sertac Karaman and Daniela Rus},
-        booktitle={The Thirteenth International Conference on Learning Representations},
-        year={2025},
-        url={https://openreview.net/forum?id=EbCUbPZjM1}
-        }
+@inproceedings{
+  nguyen2025regen,
+  title={ReGen: Generative Robot Simulation via Inverse Design},
+  author={Phat Tan Nguyen and Tsun-Hsuan Wang and Zhang-Wei Hong and Erfan Aasi and Andrew Silva and Guy Rosman and Sertac Karaman and Daniela Rus},
+  booktitle={The Thirteenth International Conference on Learning Representations},
+  year={2025},
+  url={https://openreview.net/forum?id=EbCUbPZjM1}
+}
     </code></pre>
   </div>
 </section>

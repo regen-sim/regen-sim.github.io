@@ -1,0 +1,20 @@
+#abstract-and-video{
+    background: rgb(219, 219, 219);
+}
+
+#teaser{
+    margin-top: -2em;
+    padding-top: 0;
+    border-top: 0;
+    text-align: center;
+}
+
+#teaser img{
+    /* max-width: 50em !important; */
+    max-width: min(50em, 90%) !important;
+}
+
+#teaser .hero-body{
+    padding-top: 0;
+    padding-bottom: 0;
+}
